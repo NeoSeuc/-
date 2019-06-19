@@ -15,7 +15,18 @@ searchForm.addEventListener('submit', apiSearch);
 function requestApi(url) {
     const xhr = new XMLHttpRequest();
     xhr.open("get", url);
-    xhr.onload = () => {
+    xhr.send();
+    xhr.addEventListener('readystatechange', ()=>{
+       if (xhr.readyState!==4) {
+           movies.innerHTML = "Загрузка";
+           return;
+       }
+
+       if (xhr.status!==200) {
+           movies.innerHTML = "что-то пошло не так";
+           return;
+       }
+
         const result = JSON.parse(xhr.response);
         let markup = "";
         for (let i = 0; i < result.total_results; i++) {
@@ -27,8 +38,7 @@ function requestApi(url) {
             markup+=getMovieMarkup(name, obj.overview, obj.poster_path);
         }
         movies.innerHTML = markup;
-    };
-    xhr.send();
+    });
 }
 
 function getMovieMarkup(name, description, img) {
