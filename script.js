@@ -8,7 +8,6 @@ function apiSearch(e) {
         url = "https://api.themoviedb.org/3/search/movie?api_key=30bcec8f5dda885072b3eeb762fe32c3&language=ru&query=" + searchText + "&page=1&include_adult=false";
     if (searchText)
         requestApi(url)
-
 }
 
 searchForm.addEventListener('submit', apiSearch);
@@ -21,9 +20,11 @@ function requestApi(url) {
         let markup = "";
         for (let i = 0; i < result.total_results; i++) {
             let obj = result.results[i];
-            markup+=getMovieMarkup(obj.title, obj.overview, obj.poster_path);
+            if (!obj)
+                continue;
+            let name = obj.title || obj.name;
 
-            console.log(obj);
+            markup+=getMovieMarkup(name, obj.overview, obj.poster_path);
         }
         movies.innerHTML = markup;
     };
