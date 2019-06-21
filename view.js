@@ -39,7 +39,7 @@ function getMovieViewHTML(obj) {
     <div class="mt-5 mb-5">
         <div class="companies d-flex justify-content-center">${companies}</div>
         <hr>
-        <h1 class="text-center">${obj.title}</h1>
+        <h1 class="text-center">${obj.title || obj.name}</h1>
         <hr>
         <h5 class="text-center">${obj.tagline || "Тут должен быть слоган фильма, но режисер не придумал"}</h5>
         <hr>
