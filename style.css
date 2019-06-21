@@ -1,0 +1,20 @@
+.movie {
+    cursor: pointer;
+}
+
+.movie-description {
+    overflow: hidden;
+}
+.movie-body {
+    display: none;
+}
+.movie:hover .movie-body{
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.movie .movie-button {
+    max-height: 50px;
+    position: relative;
+    bottom: 0;
+}
