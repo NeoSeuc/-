@@ -17,26 +17,25 @@ function apiSearch(e) {
         fetch(url).then((value) => {
             return value.json();
         }).then((result) => {
-            console.log(result);
             let markup = "";
 
             result.results.forEach((obj) => {
                 let name = obj.title || obj.name;
-                markup += getMovieMarkup(name, obj.overview, obj.poster_path);
+                markup += getMovieMarkup(name, obj.overview, obj.poster_path, obj.id);
+
             });
 
             movies.innerHTML = markup;
         }).catch((obj) => {
-            console.log(obj);
+
         });
     }
 }
 
 searchForm.addEventListener('submit', apiSearch);
 
-function getMovieMarkup(name, description, img) {
+function getMovieMarkup(name, description, img, id) {
     name = name.substr(0, 30);
-    // description = description.substr(0, 60) + "...";
     img = img ? urlPoster + img : "http://styled.cc/images/st-404.jpg";
     return `<div class="movie col-sm-6 col-md-3 mb-4">
                    <div class="card w-100" style="width: 18rem;">
@@ -45,7 +44,7 @@ function getMovieMarkup(name, description, img) {
                           <div class="row h-100">
                               <h3 class="card-title w-100 min-vh-25 h-25 text-center">${name}</h3>
                               <p class="card-text text-center max-vh-50 h-50 movie-description">${description}</p>
-                              <a href="./view.html" class="btn btn-primary w-100 movie-button">Подробнее</a>
+                              <a href=./view.html?id=${id} class="btn btn-primary w-100 movie-button">Подробнее</a>
                           </div>
                        </div>
                   </div>
@@ -70,15 +69,12 @@ function renderTrending(api = API_KEY, media_type = "all", time_window = "week")
 
         result.results.forEach((obj) => {
             let name = obj.title || obj.name;
-            markup += getMovieMarkup(name, obj.overview, obj.poster_path);
+            markup += getMovieMarkup(name, obj.overview, obj.poster_path, obj.id);
         });
 
         movies.innerHTML = markup;
     }).catch((obj) => {
-        console.log(obj);
+
     });
 }
 
-function renderMovie(id) {
-    const url = "https://api.themoviedb.org/3/movie/" + id + "?language=ru&api_key=" + API_KEY;
-}

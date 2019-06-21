@@ -1,0 +1,33 @@
+#movie img {
+    width: 100%;
+}
+
+.company img {
+    max-width: 200px;
+}
+
+.movie-info span {
+    font-size: 1.2em;
+    color: rgb(72, 173, 255);
+}
+
+.movie-info h6 {
+    border: 1px solid rgb(72, 173, 255);
+    padding: 5px 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    overflow: hidden;
+
+}
+
+.movie-info h6:hover {
+    background: rgb(72, 173, 255);
+    color: white;
+    transition: .3s all;
+}
+
+.movie-info h6:hover span{
+
+    color: #303030;
+    transition: .3s all;
+}
