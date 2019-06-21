@@ -35,7 +35,7 @@ function getMovieViewHTML(obj) {
     const revenue = formatMoney(obj.revenue.toString());
     const budget = formatMoney(obj.budget.toString());
     return `
-    <img src=${imageBasePath+obj.backdrop_path} alt="image">
+    <img src=${obj.backdrop_path ? imageBasePath+obj.backdrop_path:  "https://zenit.org/wp-content/uploads/2018/05/no-image-icon.png"} alt="image">
     <div class="mt-5 mb-5">
         <div class="companies d-flex justify-content-center">${companies}</div>
         <hr>
